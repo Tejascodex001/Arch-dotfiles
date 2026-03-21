@@ -1,0 +1,20 @@
+#!/bin/bash
+# Wallpaper switcher using fuzzel
+# Place wallpapers in ~/Pictures/wallpapers/
+
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+
+# Pick wallpaper via fuzzel
+CHOICE=$(ls "$WALLPAPER_DIR" | fuzzel --dmenu --prompt "Wallpaper: ")
+
+if [ -z "$CHOICE" ]; then
+    exit 0
+fi
+
+# Set wallpaper with transition
+swww img "$WALLPAPER_DIR/$CHOICE" \
+    --transition-type fade \
+    --transition-duration 1
+
+# Save last wallpaper for restore on login
+echo "$WALLPAPER_DIR/$CHOICE" > ~/.cache/last_wallpaper

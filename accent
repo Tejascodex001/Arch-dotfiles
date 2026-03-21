@@ -1,0 +1,49 @@
+#!/bin/bash
+# Accent color switcher
+# Usage: accent [blue|green|red|purple]
+
+COLORS_FILE="$HOME/dotfiles/colors.sh"
+
+case "$1" in
+    blue)   ACCENT="#7e9cd8"; ACCENT_DIM="#3d5a8a" ;;
+    green)  ACCENT="#76946a"; ACCENT_DIM="#3a5240" ;;
+    red)    ACCENT="#c34043"; ACCENT_DIM="#6b2020" ;;
+    purple) ACCENT="#957fb8"; ACCENT_DIM="#4a3f6b" ;;
+*)
+    CHOICE=$(printf "blue\ngreen\nred\npurple" | fuzzel --dmenu --prompt "Accent: " --lines 4 --width 15)
+    # Exit if user pressed Escape (empty choice)
+    if [ -z "$CHOICE" ]; then
+        exit 0
+    fi
+    exec "$0" "$CHOICE"
+    exit 0
+    ;;
+esac
+
+# Update colors.sh
+sed -i "s/export ACCENT=.*/export ACCENT=\"$ACCENT\"/" $COLORS_FILE
+sed -i "s/export ACCENT_DIM=.*/export ACCENT_DIM=\"$ACCENT_DIM\"/" $COLORS_FILE
+
+# ── Hyprland borders ─────────────────────────────────────
+hyprctl keyword general:col.active_border "rgba(${ACCENT#\#}ff)"
+hyprctl keyword general:col.inactive_border "rgba(${ACCENT_DIM#\#}55)"
+
+# ── Waybar ───────────────────────────────────────────────
+WAYBAR_CSS="$HOME/.config/waybar/style.css"
+sed -i "s/color: #7e9cd8\|color: #76946a\|color: #c34043\|color: #957fb8/color: $ACCENT/g" $WAYBAR_CSS
+sed -i "s/border-bottom: 2px solid #[0-9a-f]*/border-bottom: 2px solid $ACCENT/" $WAYBAR_CSS
+pkill waybar && waybar &
+
+# ── Foot ─────────────────────────────────────────────────
+FOOT_INI="$HOME/.config/foot/foot.ini"
+sed -i "s/regular4=.*/regular4=${ACCENT#\#}/" $FOOT_INI
+
+# ── tmux ─────────────────────────────────────────────────
+tmux set-option -gq pane-active-border-style "fg=$ACCENT" 2>/dev/null
+tmux set-option -gq status-right "#[fg=$ACCENT] #S " 2>/dev/null
+tmux set-option -gq window-status-current-style "fg=$ACCENT" 2>/dev/null
+
+# ── Neovim (updates on next open via colorscheme) ────────
+# Kanagawa handles this internally, no action needed
+
+echo "Accent switched to $1 ($ACCENT)"

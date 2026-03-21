@@ -1,0 +1,13 @@
+#!/bin/bash
+
+OPTIONS="󰌾 Lock\n󰤄 Sleep\n󰜉 Reboot\n󰍃 Logout\n󰐥 Shutdown"
+
+CHOICE=$(echo -e "$OPTIONS" | fuzzel --dmenu --prompt "Power: " --lines 5 --width 20)
+
+case "$CHOICE" in
+    *Lock*)     hyprlock ;;
+    *Sleep*)    systemctl suspend ;;
+    *Reboot*)   systemctl reboot ;;
+    *Logout*)   hyprctl dispatch exit ;;
+    *Shutdown*) systemctl poweroff ;;
+esac
