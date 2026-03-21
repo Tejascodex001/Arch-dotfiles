@@ -22,6 +22,10 @@ Type `dsa` to open a tmux session with Neovim + compile pane.
 Use `cr file.cpp` to compile and run.
 
 ## Deploy
-git clone git@github.com:yourusername/dotfiles.git
+```
+git clone https://github.com/Tejascodex001/Arch-dotfiles.git
+
 cd dotfiles
+
 ./install.sh
+```
