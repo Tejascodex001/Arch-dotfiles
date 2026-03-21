@@ -32,9 +32,12 @@ ln -sf $DOTFILES/powermenu  ~/.local/bin/powermenu
 ln -sf $DOTFILES/accent     ~/.local/bin/accent
 ln -sf $DOTFILES/screenshot ~/.local/bin/screenshot
 ln -sf $DOTFILES/wallpaper  ~/.local/bin/wallpaper
+ln -sf $DOTFILES/gpu-mode   ~/.local/bin/gpu-mode
+ln -sf $DOTFILES/gpu-run    ~/.local/bin/gpu-run
+ln -sf $DOTFILES/gpu-status ~/.local/bin/gpu-status
 
 echo "→ Setting permissions..."
-chmod +x ~/.local/bin/{cr,dsa,powermenu,accent,screenshot,wallpaper}
+chmod +x ~/.local/bin/{cr,dsa,powermenu,accent,screenshot,wallpaper,gpu-mode,gpu-run,gpu-status}
 
 echo ""
 echo "✓ Done. Next steps:"

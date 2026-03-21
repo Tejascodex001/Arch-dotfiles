@@ -1,0 +1,17 @@
+#!/bin/bash
+CURRENT=$(envycontrol --query)
+
+CHOICE=$(printf "Integrated (Battery)\nHybrid (NVIDIA on demand)\nNVIDIA Only" \
+  | fuzzel --dmenu --prompt "GPU Mode [$CURRENT]: " --lines 3 --width 30)
+
+case "$CHOICE" in
+  "Integrated (Battery)")
+    sudo envycontrol -s integrated
+    notify-send "GPU" "Switched to Integrated. Reboot required." ;;
+  "Hybrid (NVIDIA on demand)")
+    sudo envycontrol -s hybrid
+    notify-send "GPU" "Switched to Hybrid. Reboot required." ;;
+  "NVIDIA Only")
+    sudo envycontrol -s nvidia
+    notify-send "GPU" "Switched to NVIDIA Only. Reboot required." ;;
+esac
