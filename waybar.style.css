@@ -90,5 +90,8 @@ window#waybar {
   padding: 0 12px;
   color: #c5c9c5;
 }
-
+#custom-gpu {
+  padding: 0 12px;
+  color: #76946a;
+}
 #custom-power:hover { color: #ff5555; }
