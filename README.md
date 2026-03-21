@@ -29,3 +29,21 @@ cd dotfiles
 
 ./install.sh
 ```
+## KEYBIND REFERENCE
+```
+Super+Return    Terminal
+Super+Space     Launcher
+Super+B         Firefox
+Super+P         Power menu
+Super+L         Lock screen
+Super+N         Toggle notifications
+Super+V         Clipboard history
+Super+F         Fullscreen
+Super+Q         Kill window
+Print           Screenshot
+Shift+Print     Screenshot region
+1-5             Switch workspace
+Shift+1-5       Move window to workspace
+H/J/K/L         Focus movement
+```
+
