@@ -72,10 +72,9 @@
 
   "custom/power": {
     "format": "󰐥",
-    "on-click": "~/.local/bin/powermenu",
-    "exec": "echo",
-    "interval": 86400
-  },
+    "on-click": "/home/produser/.local/bin/powermenu",
+    "tooltip": false
+},
   
   "custom/gpu": {
     "format": "󰢮",

@@ -25,6 +25,11 @@ ln -sf $DOTFILES/init.lua           ~/.config/nvim/init.lua
 ln -sf $DOTFILES/tmux.conf          ~/.config/tmux/tmux.conf
 ln -sf $DOTFILES/zshrc              ~/.zshrc
 
+# Wlogout
+mkdir -p ~/.config/wlogout
+ln -sf $DOTFILES/wlogout/.config/wlogout/layout ~/.config/wlogout/layout
+ln -sf $DOTFILES/wlogout/.config/wlogout/style.css ~/.config/wlogout/style.css
+
 echo "→ Symlinking scripts..."
 ln -sf $DOTFILES/cr         ~/.local/bin/cr
 ln -sf $DOTFILES/dsa        ~/.local/bin/dsa
@@ -39,9 +44,18 @@ ln -sf $DOTFILES/gpu-status ~/.local/bin/gpu-status
 echo "→ Setting permissions..."
 chmod +x ~/.local/bin/{cr,dsa,powermenu,accent,screenshot,wallpaper,gpu-mode,gpu-run,gpu-status}
 
+# Dark mode
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+
 echo ""
 echo "✓ Done. Next steps:"
-echo "  1. Install packages: sudo pacman -S hyprland foot waybar dunst fuzzel tmux neovim zsh zsh-autosuggestions zsh-syntax-highlighting tlp tlp-rdw brightnessctl swww hyprlock hypridle grim slurp wl-clipboard cliphist jq yazi uv pyright network-manager-applet blueman ttf-jetbrains-mono-nerd"
+echo "  1. Install packages: sudo pacman -S --needed stow hyprland foot waybar dunst fuzzel tmux neovim \
+  zsh zsh-autosuggestions zsh-syntax-highlighting tlp tlp-rdw brightnessctl \
+  swww hyprlock hypridle grim slurp wl-clipboard cliphist jq yazi uv pyright \
+  gcc clang network-manager-applet blueman ttf-jetbrains-mono-nerd python \
+  git base-devel nodejs npm swayosd wlogout playerctl"
+
 echo "  2. AUR: paru -S obsidian discord"
 echo "  3. Reload shell: exec zsh"
 echo "  4. Start Hyprland"

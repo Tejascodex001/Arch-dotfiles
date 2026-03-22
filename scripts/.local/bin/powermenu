@@ -1,0 +1,9 @@
+#!/bin/bash
+wlogout \
+  -C /home/produser/.config/wlogout/style.css \
+  -l /home/produser/.config/wlogout/layout \
+  -b 5 \
+  -c 10 \
+  -r 10 \
+  -T 300 \
+  -B 300
