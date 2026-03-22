@@ -15,6 +15,18 @@ setopt HIST_IGNORE_DUPS SHARE_HISTORY
 # Completion
 autoload -Uz compinit && compinit
 
+# Keybindings
+bindkey -e                                        # emacs mode (normal terminal behavior)
+bindkey '^[[A' history-search-backward            # Up arrow — search history
+bindkey '^[[B' history-search-forward             # Down arrow — search history
+bindkey '^[[H' beginning-of-line                  # Home key
+bindkey '^[[F' end-of-line                        # End key
+bindkey '^[[3~' delete-char                       # Delete key
+bindkey '^[[1;5C' forward-word                    # Ctrl+Right
+bindkey '^[[1;5D' backward-word                   # Ctrl+Left
+bindkey '^H' backward-delete-char                 # Backspace
+bindkey '^[[Z' reverse-menu-complete              # Shift+Tab
+
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
