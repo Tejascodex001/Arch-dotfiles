@@ -6,7 +6,7 @@
 
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["network", "pulseaudio", "backlight", "cpu", "battery", "custom/gpu", "bluetooth", "custom/wallpaper", "custom/accent", "custom/power"],
+"modules-right": ["tray", "network", "pulseaudio", "backlight", "cpu", "battery", "custom/gpu", "bluetooth", "custom/wallpaper", "custom/power"],
 
   "hyprland/workspaces": {
     "format": "{id}",
@@ -96,5 +96,10 @@
     "scroll-step": 5,
     "on-scroll-up": "brightnessctl -d intel_backlight set 5%+",
     "on-scroll-down": "brightnessctl -d intel_backlight set 5%-"
+  },
+
+  "tray": {
+    "spacing": 8,
+    "show-passive-items": true
   }
 }
