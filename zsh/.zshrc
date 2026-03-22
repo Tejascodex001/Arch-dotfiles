@@ -2,6 +2,10 @@
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 
+# CUDA
+export PATH="/opt/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/opt/cuda/lib64:$LD_LIBRARY_PATH"
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
