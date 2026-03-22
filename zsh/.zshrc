@@ -23,6 +23,8 @@ alias v='nvim'
 alias ll='ls -lah --color=auto'
 alias gs='git status'
 alias y='yazi'
+alias cheat='nvim ~/dotfiles/docs/cheatsheet.md'
+alias sync='~/dotfiles/sync.sh'
 
 # Activate venv in current directory
 activate() {
