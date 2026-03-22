@@ -32,5 +32,9 @@ alias sync='~/dotfiles/sync.sh'
 
 # Activate venv in current directory
 activate() {
+    if [ ! -d ".venv" ]; then
+        echo "No .venv found, creating one..."
+        uv venv .venv
+    fi
     source .venv/bin/activate
 }
