@@ -46,4 +46,12 @@ Shift+Print     Screenshot region
 Shift+1-5       Move window to workspace
 H/J/K/L         Focus movement
 ```
-
+```
+sync "message"   → save and push all configs to GitHub
+cheat            → open the keybind cheatsheet
+dsa              → open DSA tmux workspace
+cr file.cpp      → compile and run C++
+activate         → create/activate Python venv
+gpu-run cmd      → run any command on NVIDIA GPU
+notif            → see recent notifications
+```
