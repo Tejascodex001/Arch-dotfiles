@@ -3,7 +3,6 @@
 # Usage: ./install.sh
 # Run from ~/dotfiles/
 
-set -e
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
 echo "→ Creating directories..."
@@ -29,6 +28,10 @@ ln -sf $DOTFILES/zshrc              ~/.zshrc
 mkdir -p ~/.config/wlogout
 ln -sf $DOTFILES/wlogout/.config/wlogout/layout ~/.config/wlogout/layout
 ln -sf $DOTFILES/wlogout/.config/wlogout/style.css ~/.config/wlogout/style.css
+
+#waypaper
+mkdir -p ~/.config/waypaper
+ln -sf $DOTFILES/waypaper/.config/waypaper/config.ini ~/.config/waypaper/config.ini
 
 echo "→ Symlinking scripts..."
 ln -sf $DOTFILES/cr         ~/.local/bin/cr

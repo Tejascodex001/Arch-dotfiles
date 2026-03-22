@@ -1,7 +1,7 @@
 #!/bin/bash
 wlogout \
-  -C /home/produser/.config/wlogout/style.css \
-  -l /home/produser/.config/wlogout/layout \
+  -C $HOME/.config/wlogout/style.css \
+  -l $HOME/.config/wlogout/layout \
   -b 5 \
   -c 10 \
   -r 10 \

@@ -1,10 +1,12 @@
 #!/bin/bash
-# screenshot [full|area|window]
+SAVEDIR="$HOME/Pictures/screenshots"
+mkdir -p "$SAVEDIR"
+FILENAME="$SAVEDIR/$(date +%Y%m%d_%H%M%S).png"
 
 case "$1" in
-    area)   grim -g "$(slurp)" ~/Pictures/$(date +%Y%m%d_%H%M%S).png ;;
-    window) grim -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" ~/Pictures/$(date +%Y%m%d_%H%M%S).png ;;
-    *)      grim ~/Pictures/$(date +%Y%m%d_%H%M%S).png ;;
+    area)   grim -g "$(slurp)" "$FILENAME" ;;
+    window) grim -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" "$FILENAME" ;;
+    *)      grim "$FILENAME" ;;
 esac
 
-notify-send "Screenshot" "Saved to ~/Pictures"
+notify-send "Screenshot" "Saved to ~/Pictures/screenshots"

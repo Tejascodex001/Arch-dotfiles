@@ -72,14 +72,20 @@
 
   "custom/power": {
     "format": "󰐥",
-    "on-click": "/home/produser/.local/bin/powermenu",
+    "on-click": "/home/tejas/.local/bin/powermenu",
+    "tooltip": false
+},
+
+"custom/wallpaper": {
+    "format": "󰋩",
+    "on-click": "waypaper",
     "tooltip": false
 },
   
   "custom/gpu": {
     "format": "󰢮",
-    "on-click": "/home/produser/.local/bin/gpu-mode",
-    "exec": "/home/produser/.local/bin/gpu-status",
+    "on-click": "/home/tejas/.local/bin/gpu-mode",
+    "exec": "/home/tejas/.local/bin/gpu-status",
     "interval": 30,
     "tooltip": true
   },
