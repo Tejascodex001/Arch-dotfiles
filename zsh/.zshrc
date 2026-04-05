@@ -45,8 +45,34 @@ alias sync='~/dotfiles/sync.sh'
 # Activate venv in current directory
 activate() {
     if [ ! -d ".venv" ]; then
-        echo "No .venv found, creating one..."
-        uv venv .venv
+        echo "No .venv found. Choose Python version:"
+        
+        # Find all available python versions
+        VERSIONS=()
+        for py in python python3 python3.10 python3.11 python3.12 python3.13 python3.14; do
+            if command -v $py &>/dev/null; then
+                VERSION=$($py --version 2>&1 | awk '{print $2}')
+                VERSIONS+=("$py ($VERSION)")
+            fi
+        done
+
+        # Display options
+        for i in "${!VERSIONS[@]}"; do
+            echo "  $((i+1)). ${VERSIONS[$i]}"
+        done
+
+        echo -n "Select [1-${#VERSIONS[@]}] (default=1): "
+        read CHOICE
+        CHOICE=${CHOICE:-1}
+        
+        # Extract python binary
+        PYTHON=$(echo ${VERSIONS[$((CHOICE-1))]} | awk '{print $1}')
+        
+        echo "Creating .venv with $PYTHON..."
+        uv venv .venv --python $PYTHON
     fi
+    
     source .venv/bin/activate
+    echo "Activated $(python --version) in $(pwd)/.venv"
 }
+export OLLAMA_API_BASE=http://localhost:11434
