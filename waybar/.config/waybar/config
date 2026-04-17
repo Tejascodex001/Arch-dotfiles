@@ -78,7 +78,7 @@
 
 "custom/wallpaper": {
     "format": "󰋩",
-    "on-click": "waypaper",
+    "on-click": "/home/tejas/.local/bin/wallpaper",
     "tooltip": false
 },
   
@@ -102,4 +102,5 @@
     "spacing": 8,
     "show-passive-items": true
   }
+  
 }

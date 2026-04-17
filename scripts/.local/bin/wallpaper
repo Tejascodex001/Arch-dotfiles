@@ -1,20 +1,42 @@
 #!/bin/bash
-# Wallpaper switcher using fuzzel
-# Place wallpapers in ~/Pictures/wallpapers/
-
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+THUMB_DIR="$HOME/.cache/wallpaper-thumbs"
 
-# Pick wallpaper via fuzzel
-CHOICE=$(ls "$WALLPAPER_DIR" | fuzzel --dmenu --prompt "Wallpaper: ")
+# Generate missing thumbnails
+for img in "$WALLPAPER_DIR"/*; do
+    filename=$(basename "$img")
+    thumb="$THUMB_DIR/$filename"
+    if [ ! -f "$thumb" ]; then
+        convert "$img" -thumbnail 500x500^ -gravity center -extent 500x500 "$thumb" 2>/dev/null
+    fi
+done
 
-if [ -z "$CHOICE" ]; then
-    exit 0
-fi
+# Build rofi entries with icons
+ENTRIES=""
+for img in "$WALLPAPER_DIR"/*; do
+    filename=$(basename "$img")
+    thumb="$THUMB_DIR/$filename"
+    ENTRIES+="$filename\x00icon\x1f$thumb\n"
+done
 
-# Set wallpaper with transition
-swww img "$WALLPAPER_DIR/$CHOICE" \
-    --transition-type fade \
-    --transition-duration 1
+# Show rofi picker
+CHOICE=$(echo -e "$ENTRIES" | rofi \
+    -dmenu \
+    -p "Wallpaper" \
+    -show-icons \
+    -icon-size 150 \
+    -theme ~/.config/rofi/wallpaper.rasi)
 
-# Save last wallpaper for restore on login
-echo "$WALLPAPER_DIR/$CHOICE" > ~/.cache/last_wallpaper
+
+[ -z "$CHOICE" ] && exit 0
+
+FULL_PATH="$WALLPAPER_DIR/$CHOICE"
+
+# Apply wallpaper
+pkill swaybg
+swaybg -i "$FULL_PATH" -m fill &
+
+# Save for persistence
+echo "$FULL_PATH" > ~/.cache/last_wallpaper
+
+notify-send "Wallpaper" "Set to $CHOICE"
